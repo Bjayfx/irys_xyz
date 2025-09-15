@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Irys Quiz </title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://iili.io/KuBBA2n.png'); /* switched to direct PNG link */
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+      color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background: rgba(34, 34, 34, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #00e0b8;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    button {
+      display: block;
+      margin: 8px 0;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #00e0b8;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #00b896;
+    }
+    #result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    #result img {
+      margin-top: 20px;
+      max-width: 250px;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Irys Quiz</h1>
+    <div id="quiz"></div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What is the 1st Irys Commandment?",
+        answers: ["Creativity Takes Courage", "Think from First Principles", "Growth Over Perfection"],
+        correct: 1
+      },
+      {
+        question: "What does 'Iryspect' mean?",
+        answers: ["I respect", "I reject", "I react"],
+        correct: 0
+      },
+      {
+        question: "Which phrase is part of Irys Affirmations?",
+        answers: ["The data is programmable", "Stay humble hustle hard", "We build the chain"],
+        correct: 0
+      },
+      {
+        question: "What’s encouraged in Irys community?",
+        answers: ["Perfectionism", "Ego-driven competition", "Growth over perfection"],
+        correct: 2
+      },
+      {
+        question: "What does 'Hirys' mean?",
+        answers: ["Bye", "Hi/gm", "Goodnight"],
+        correct: 1
+      },
+      {
+        question: "Which commandment says 'Push boundaries. Take risks'?",
+        answers: ["Creativity Takes Courage", "No Ego, Just Support", "Own Your Impact"],
+        correct: 0
+      },
+      {
+        question: "What does 'Irysonate' mean?",
+        answers: ["I resonate", "I remember", "I restore"],
+        correct: 0
+      },
+      {
+        question: "Which commandment encourages asking questions?",
+        answers: ["Stay Curious, Ask Questions", "Have Fun, Stay Weird", "Think from First Principles"],
+        correct: 0
+      },
+      {
+        question: "Complete this affirmation: 'MAKE ______ GREAT AGAIN.'",
+        answers: ["BLOCKCHAINS", "DATACHAINS", "SMARTCONTRACTS"],
+        correct: 1
+      },
+      {
+        question: "What mindset beats perfection in Irys culture?",
+        answers: ["Growth", "Creativity", "Support"],
+        correct: 0
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const quiz = document.getElementById("quiz");
+    const result = document.getElementById("result");
+
+    function loadQuestion() {
+      if (currentQuestion < quizData.length) {
+        let q = quizData[currentQuestion];
+        quiz.innerHTML = `
+          <div class="question">
+            <h2>${q.question}</h2>
+            ${q.answers.map((a, i) => `<button onclick=\"checkAnswer(${i})\">${a}</button>`).join("")}
+          </div>
+        `;
+      } else {
+        quiz.innerHTML = "";
+        result.innerHTML = `🎉 You scored ${score} / ${quizData.length}`;
+        result.innerHTML += `<img src=\"https://iili.io/KuBIfkX.png\" alt=\"Quiz Result Image\">`;
+      }
+    }
+
+    function checkAnswer(answer) {
+      if (answer === quizData[currentQuestion].correct) {
+        score++;
+      }
+      currentQuestion++;
+      loadQuestion();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
+ cv
